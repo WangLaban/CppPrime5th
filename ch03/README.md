@@ -256,8 +256,8 @@ cout << *cp;
 }
 ```
 
-The code will print "helloworld" when you run it. -- No, ca and s are not necessarily adjacent in memory
-because the character list in the `.rodata` like this:
+The code will print "helloworld" when you run it.
+because the character list in the `.rodata` like this: -- No, variables ca and s are not necessarily adjacent in memory
 
     h e l l o w o r l d \0
 `While(*cp)` judge weather *cp is 0 or not. when *cp is not 0, it will print the character until 0.
