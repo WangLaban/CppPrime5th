@@ -239,7 +239,7 @@ while (*cp) {
 }
 ```
 
-Print all the elements of the array.
+Print all the elements of the array and unkonwn characters until encountering a '\0'.
 
 -----
 **WARNING!!!!**
@@ -256,7 +256,7 @@ cout << *cp;
 }
 ```
 
-The code will print "helloworld" when you run it.
+The code will print "helloworld" when you run it. -- No, ca and s are not necessarily adjacent in memory
 because the character list in the `.rodata` like this:
 
     h e l l o w o r l d \0
