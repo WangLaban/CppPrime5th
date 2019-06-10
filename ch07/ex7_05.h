@@ -26,5 +26,5 @@ public:
 
 // Yes, A const following the parameter list indicates that this is a pointer to
 // const.
-// These functions my read but not write to the data members of the objects on
+// These functions may read but not write to the data members of the objects on
 // which it is called.
