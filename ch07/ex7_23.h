@@ -22,6 +22,7 @@ public:
 
     char get() const { return contents[cursor]; }
     char get(pos r, pos c) const { return contents[r * width + c]; }
+    Screen &move(pos r, pos c);
 
 private:
     pos cursor = 0;
