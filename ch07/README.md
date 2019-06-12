@@ -392,6 +392,7 @@ struct Sales_data {
     double revenue;
 };
 ```
+Comment: gcc version 4.6.3 compiles fail if `Sales_data` have in-class initializers, but gcc version 8.1.0 compiles OK.
 
 ## [## Exercise 7.53](ex7_53.h)
 
