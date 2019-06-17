@@ -24,7 +24,7 @@ int main()
     if (!ifs) return -1;
     string longest_word;
     for (string word; ifs >> word;)
-        if (word.find_first_not_of("aceimnorsuvwxz") == string::npos &&
+        if (word.find_first_not_of("acemnorsuvwxz") == string::npos &&
             word.size() > longest_word.size())
             longest_word = word;
 
