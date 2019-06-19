@@ -45,4 +45,4 @@ int main()
 }
 //! output
 // ex10.11 :
-// Hi 1234 alan
+// Hi 1234 alan wang
