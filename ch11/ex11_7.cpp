@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <map>
+#include <vector>
 #include <string>
 #include <algorithm>
 
@@ -20,7 +21,7 @@ int main()
     std::string lastName, chldName;
 
     //! while(lambda)
-    //! go to the discussions on stack overfow for more.
+    //! go to the discussions on stack overflow for more.
     while ([&]() -> bool {
         std::cout << "Please enter last name:\n";
 
