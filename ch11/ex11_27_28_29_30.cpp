@@ -3,7 +3,7 @@
 //! Exercise 11.27:
 //! What kinds of problems would you use count to solve?
 //! When might you use find instead?
-//  I would use count to deal with multimap or multi multiset.
+//  I would use count to deal with multimap or multiset.
 //  As for the associative container that have unique key, I would use find
 //  instead of count.
 //!
