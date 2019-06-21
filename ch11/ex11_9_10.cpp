@@ -14,6 +14,7 @@
 #include <map>
 #include <string>
 #include <algorithm>
+#include <vector>
 #include <list>
 
 int main()
