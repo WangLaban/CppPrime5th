@@ -10,7 +10,7 @@
 //! Contrast the following program with the one in the previous exercise
 //!     vector<int> v;
 //!     v[0] = 1;
-//  Since the vector v is empty, the subsript operator [0] can not access v[0].
+//  Since the vector v is empty, the subscript operator [0] can not access v[0].
 //  Thus, the statement v[0] = 1; is meaningless.
 //!
 //! Exercise 11.26:
