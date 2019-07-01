@@ -20,7 +20,7 @@ public:
     ~String();
 
     const char* c_str() const { return elements; }
-    size_t size() const { return end - elements; }
+    size_t size() const { return end - elements - 1; }
     size_t length() const { return end - elements - 1; }
 
 private:
