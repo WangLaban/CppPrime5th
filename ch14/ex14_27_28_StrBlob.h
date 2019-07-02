@@ -315,7 +315,7 @@ inline ConstStrBlobPtr &ConstStrBlobPtr::operator++() {
 
 inline ConstStrBlobPtr &ConstStrBlobPtr::operator--() {
   --curr;
-  check(-1, "decrement past begin of ConstStrBlobPtr");
+  check(curr, "decrement past begin of ConstStrBlobPtr");
   return *this;
 }
 
