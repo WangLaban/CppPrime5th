@@ -443,7 +443,8 @@ review the order:
 
 ```cpp
 struct LongDouble {
-    // member operator+ for illustration purposes; + is usually a nonmember LongDouble operator+(const SmallInt&); // 1
+    // member operator+ for illustration purposes; + is usually a nonmember 
+    LongDouble operator+(const SmallInt&); // 1
     // other members as in 14.9.2 (p. 587)
 };
 LongDouble operator+(LongDouble&, double); // 2
