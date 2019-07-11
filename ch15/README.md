@@ -442,3 +442,134 @@ Different from previous program, it can be found that 20% and 50% discount has b
 > What about objects of type `Query_base`?
 
 Managed by the synthesized version. Since `Query_base` a abstract class, the object of this type is essentially a sub-object of its derived class.
+
+## Exercise 15.34:
+> For the expression built in Figure 15.3 (p. 638):
+
+> (a) List the constructors executed in processing that expression.
+
+> (b) List the calls to rep that are made from `cout << q`.
+
+> (c) List the calls to `eval` made from `q.eval()`.
+
+
+* **a:** Query q = Query("fiery") & Query("bird") | Query("wind");
+
+
+1. `Query::Query(const std::string& s)` where s == "fiery","bird" and "wind"
+2. `WordQuery::WordQuery(const std::string& s)` where s == "fiery","bird" and "wind"
+3. `AndQuery::AndQuery(const Query& left, const Query& right);`
+4. `BinaryQuery(const Query&l, const Query& r, std::string s);`
+5. `Query::Query(std::shared_ptr<Query_base> query)` 2times
+6. `OrQuery::OrQuery(const Query& left, const Query& right);`
+7. `BinaryQuery(const Query&l, const Query& r, std::string s);`
+8. `Query::Query(std::shared_ptr<Query_base> query)` 2times
+
+
+* **b:**
+
+
+1. `query.rep()` inside the operator <<().
+2. `q->rep()` inside the member function rep().
+3. `OrQuery::rep()` which is inherited from `BinaryQuery`.
+4. `Query::rep()` for `lhs` and `rhs`:
+for `rhs` which is a `WordQuery` : `WordQuery::rep()` where `query_word("wind")` is returned.For `lhs` which is an `AndQuery`.
+5. `AndQuery::rep()` which is inherited from `BinaryQuery`.
+6. `BinaryQuer::rep()`: for `rhs: WordQuery::rep()`   where query_word("fiery") is returned. For `lhs: WordQuery::rep()` where query_word("bird" ) is returned.
+
+
+* **c:**
+
+
+1. `q.eval()`
+2. `q->rep()`: where q is a pointer to `OrQuary`.
+3. `QueryResult eval(const TextQuery& )const override`: is called but this one has not been defined yet.
+
+## Exercise 15.35:
+> Implement the `Query` and `Query_base classes`, including a definition of rep but omitting the definition of `eval`.
+
+[Query](ex15.34.35.36.38/query.h) | [Query_base](ex15.34.35.36.38/query_base.h)
+
+## Exercise 15.36:
+> Put print statements in the constructors and rep members and run your code to check your answers to (a) and (b) from the first exercise.
+
+```cpp
+Query q = Query("fiery") & Query("bird") | Query("wind");
+
+WordQuery::WordQuery(wind)
+Query::Query(const std::string& s) where s=wind
+WordQuery::WordQuery(bird)
+Query::Query(const std::string& s) where s=bird
+WordQuery::WordQuery(fiery)
+Query::Query(const std::string& s) where s=fiery
+BinaryQuery::BinaryQuery()  where s=&
+AndQuery::AndQuery()
+Query::Query(std::shared_ptr<Query_base> query)
+BinaryQuery::BinaryQuery()  where s=|
+OrQuery::OrQuery
+Query::Query(std::shared_ptr<Query_base> query)
+Press <RETURN> to close this window...
+```
+
+```cpp
+std::cout << q <<std::endl;
+
+Query::rep()
+BinaryQuery::rep()
+Query::rep()
+WodQuery::rep()
+Query::rep()
+BinaryQuery::rep()
+Query::rep()
+WodQuery::rep()
+Query::rep()
+WodQuery::rep()
+((fiery & bird) | wind)
+Press <RETURN> to close this window...
+```
+
+## Exercise 15.37:
+
+## Exercise 15.38:
+> Are the following declarations legal? If not, why not? If so, explain what the declarations mean.
+
+> BinaryQuery a = Query("fiery") & Query("bird");
+
+>AndQuery b = Query("fiery") & Query("bird");
+
+> OrQuery c = Query("fiery") & Query("bird");
+
+
+1. Illegal. Because `BinaryQuery` is an abstract class.
+2. Illegal. Because operator & returns a `Query` which can not convert to an `AndQuery` object.
+3. Illegal. Because operator & returns a `Query` which can not convert to an `OrQuery` object.
+
+## Exercise 15.39:
+> Implement the `Query` and `Query_base` classes. Test your application by evaluating and printing a query such as the one in Figure 15.3 (p. 638).
+
+[Query](ex15.39.40/query.h) | [Query_base](ex15.39.40/query_base.h) | [main](ex15.39.40/main.cpp)
+
+## Exercise 15.40:
+> In the `OrQuery` eval function what would happen if its `rhs` member returned an empty set? What if its `lhs` member did so? What if both `rhs` and `lhs` returned empty sets?
+
+Nothing special will happen.  The codes as following:
+
+```cpp
+std::shared_ptr<std::set<line_no>> ret_lines =
+       std::make_shared<std::set<line_no>>(left.begin(), left.end());
+```
+
+Since `std::make_shared` will allocate dynamically a new `std::set`, nothing will be added into this `std::set` if any set is empty.The codes in main function proves this.
+
+## Exercise 15.41:
+
+## Exercise 15.42:
+>  Design and implement one of the following enhancements:
+
+> **(a)** Print words only once per sentence rather than once per line.
+
+> **(b)** Introduce a history system in which the user can refer to a previous query by number, possibly adding to it or combining it with another.
+
+> **(c)** Allow the user to limit the results so that only matches in a given range of lines are displayed.
+
+Here are solutions for [(b)](ex15.42_b/main.cpp) and [(c)](ex15.42_c/main.cpp).
