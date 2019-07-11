@@ -419,9 +419,9 @@ Different from previous program, it can be found that 20% and 50% discount has b
 - (b) `Query(s1) | (Query(s2) & ~ Query(s3));`
 - (c) `(Query(s1) & (Query(s2)) | (Query(s3) & Query(s4)));`
 
-- (a): `WordQuery` , `NotQuery` , `AndQuery` , `OrQuery`
-- (b): `WordQuery` , `NotQuery` , `AndQuery` , `OrQuery` (same as the previous one)
-- (c): `WordQuery` , `AndQuery` , `OrQuery`
+- (a): `WordQuery, NotQuery, AndQuery, OrQuery`
+- (b): `WordQuery, NotQuery, AndQuery, OrQuery` (same as the previous one)
+- (c): `WordQuery, AndQuery, OrQuery`
 
 ## Exercise 15.32
 
