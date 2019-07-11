@@ -456,18 +456,33 @@ Managed by the synthesized version. Since `Query_base` a abstract class, the obj
 * **a:** Query q = Query("fiery") & Query("bird") | Query("wind");
 
 
-1. `Query::Query(const std::string& s)` where s == "fiery","bird" and "wind"
-2. `WordQuery::WordQuery(const std::string& s)` where s == "fiery","bird" and "wind"
-3. `AndQuery::AndQuery(const Query& left, const Query& right);`
-4. `BinaryQuery(const Query&l, const Query& r, std::string s);`
-5. `Query::Query(std::shared_ptr<Query_base> query)` 2times
-6. `OrQuery::OrQuery(const Query& left, const Query& right);`
-7. `BinaryQuery(const Query&l, const Query& r, std::string s);`
-8. `Query::Query(std::shared_ptr<Query_base> query)` 2times
+1. `WordQuery::WordQuery(wind)`
+2. `Query::Query(const std::string& s) where s=wind`
+3. `WordQuery::WordQuery(bird)`
+4. `Query::Query(const std::string& s) where s=bird`
+5. `WordQuery::WordQuery(fiery)`
+6. `Query::Query(const std::string& s) where s=fiery`
+7. `BinaryQuery(const Query& l, const Query& r, std::string s) where s=&`
+8. `AndQuery::AndQuery(const Query& left, const Query& right)`
+9. `Query::Query(std::shared_ptr<Query_base> query)`
+10. `BinaryQuery(const Query& l, const Query& r, std::string s) where s=|`
+11. `OrQuery::OrQuery(const Query& left, const Query& right);`
+12. `Query::Query(std::shared_ptr<Query_base> query)`
 
 
 * **b:**
 
+MyResult:
+1. `Query::rep()`
+2. `BinaryQuery::rep()`
+3. `Query::rep()`
+4. `WordQuery::rep()`
+5. `Query::rep()`
+6. `BinaryQuery::rep()`
+7. `Query::rep()`
+8. `WordQuery::rep()`
+9. `Query::rep()`
+10. `WordQuery::rep()`
 
 1. `query.rep()` inside the operator <<().
 2. `q->rep()` inside the member function rep().
