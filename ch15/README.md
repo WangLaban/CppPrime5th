@@ -484,6 +484,7 @@ MyResult:
 9. `Query::rep()`
 10. `WordQuery::rep()`
 
+Original:
 1. `query.rep()` inside the operator <<().
 2. `q->rep()` inside the member function rep().
 3. `OrQuery::rep()` which is inherited from `BinaryQuery`.
