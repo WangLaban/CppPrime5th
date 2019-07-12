@@ -229,7 +229,7 @@ Solution:
 - (c) Instantiation. Doesn't compile!
 - (d) No instantiation, compiles, references and pointers doesn't need instantiation
 - (e) Instantiation of `Stack<char>`. Doesn't compile!
-- (f) Instantiation of `Stack<std::string>`. Doesn't compileNo instantiation, compiles, references and pointers doesn't need instantiation!
+- (f) Instantiation of `Stack<std::string>`. Doesn't compile!
 
 Solution from [How is a template instantiated? - Stack Overflow](https://stackoverflow.com/questions/21598635/how-is-a-template-instantiated)
 
