@@ -440,6 +440,12 @@ Since C++11, [`std::allocator::construct`](http://en.cppreference.com/w/cpp/memo
 
 [flip and test](ex16_47_flip.cpp)
 
+## Exercise 16.48
+
+> Write your own version of the debug_rep function.
+
+[flip and test](ex16.47/main.cpp)
+
 ## Exercise 16.49
 
 > Explain what happens in each of the following calls:
