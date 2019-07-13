@@ -444,7 +444,7 @@ Since C++11, [`std::allocator::construct`](http://en.cppreference.com/w/cpp/memo
 
 > Write your own version of the debug_rep function.
 
-[flip and test](ex16.48/main.cpp)
+[debug_rep and test](ex16.48/main.cpp)
 
 ## Exercise 16.49
 
@@ -496,3 +496,55 @@ foo(i, s, s, d);   // input in Args: string, string, double       sizeof...(Args
 
 [variadic template](ex16_52_variadic_template.cpp)
 
+# Exercise 16.53
+> Write your own version of the print functions and test them by printing one, two, and five arguments, each of which should have different types.
+
+[print and test](ex16.53.54.55/main.cpp)
+
+
+## Exercise 16.54
+
+> What happens if we call print on a type that doesn't have an << operator?
+
+didn't compile.
+
+## Exercise 16.55
+
+> Explain how the variadic version of print would execute if we declared the nonvariadic version of print after the definition of the variadic version.
+
+error: no matching function for call to 'print(std::ostream&)'
+
+# Exercise 16.56
+> Write and test a variadic version of errorMsg.
+
+[errorMsg and test](ex16.56.57/main.cpp)
+
+## Exercise 16.57
+
+> Compare your variadic version of errorMsg to the error_msg function in § 6.2.6 (p. 220). What are the advantages and disadvantages of each approach?
+
+The error_msg takes initializer_list as the argument. So only the elements stored in it must be the same or at least convertible. In contrast, the variadic version provides better flexibility.
+
+## Exercise 16.58
+
+> Write the emplace_back function for your StrVec class and for the Vec class that you wrote for the exercises in § 16.1.2 (p. 668).
+
+[strvec.h](ex16.58.59/strvec.h) | [strvec.cpp](ex16.58.59/strvec.cpp) | [vec.h](ex16.58.59/vec.h)
+
+## Exercise 16.59
+
+> Assuming s is a string, explain svec.emplace_back(s).
+
+The argument to emplace_back is a lvalue, the result type from forward<string>(s) is string&, so construct will be called with a lvalue reference. The construct function will, in turn, forward this argument to the string copy constructor to build this element.
+
+## Exercise 16.60
+
+> Explain how make_shared (§ 12.1.1, p. 451) works.
+
+make_shared should be a variadic template member which forward all of fun's arguments to the underlying functions that allocate and initializes an object in dynamic memory and return a shared_ptr.
+
+## Exercise 16.61
+
+> Define your own version of make_shared.
+
+[make_shared implement and test](ex16.60.61/main.cpp)
