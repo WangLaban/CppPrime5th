@@ -444,7 +444,7 @@ Since C++11, [`std::allocator::construct`](http://en.cppreference.com/w/cpp/memo
 
 > Write your own version of the debug_rep function.
 
-[flip and test](ex16.47/main.cpp)
+[flip and test](ex16.48/main.cpp)
 
 ## Exercise 16.49
 
