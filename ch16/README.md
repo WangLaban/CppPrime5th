@@ -548,3 +548,41 @@ make_shared should be a variadic template member which forward all of fun's argu
 > Define your own version of make_shared.
 
 [make_shared implement and test](ex16.60.61/main.cpp)
+
+
+## Exercise 16.62
+
+> Define your own version of hash<Sales_data> and define an unordered_multiset of Sales_data objects. Put several transactions into the container and print its contents.
+
+[Header](ex16.62/Sales_data.h) | [Implement](ex16.62/Sales_data.cc) | [Test](ex16.62/main.cpp)
+
+## Exercise 16.63
+
+> Define a function template to count the number of occurrences of a given value in a vector. Test your program by passing it a vector of doubles, a vector of ints, and a vector of strings.
+
+[Implement](ex16.63.64/main.cpp)
+
+## Exercise 16.64
+
+> Write a specialized version of the template from the previous exercise to handle vector<const char*> and a program that uses this specialization.
+
+[Implement](ex16.63.64/main.cpp)
+
+## Exercise 16.65
+
+> In § 16.3 (p. 698) we defined overloaded two versions of debug_rep one had a const char* and the other a char* parameter. Rewrite these functions as specializations.
+
+[Implement](ex16.65.66.67/main.cpp)
+
+## Exercise 16.66
+
+> What are the advantages and disadvantages of overloading these debug_rep functions as compared to defining specializations?
+
+Overloading changes the function match.
+
+## Exercise 16.67
+
+> Would defining these specializations affect function matching for debug_rep? If so, how? If not, why not?
+
+Won't change.
+Specializations instantiate a template; they do not overload it. As a result, specializations do not affect function matching.
