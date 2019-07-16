@@ -120,4 +120,60 @@ Because `std::accumulate`'s third parameter is the initial value of the sum. It'
 
 > Revise your program to ignore words that contain "ei" but are not  misspellings, such as "albeit" and "neighbor."
 
-[ignore_not_misspellings.cpp](ex17_18_ignore_not_misspellings.cpp)
+[ignore_not_misspellings](ex17_18_ignore_not_misspellings.cpp)
+
+## Exercise 17.19
+
+> Why is it okay to call m[4].str() without first checking whether m[4] was matched?
+
+We expect that the two delimiters in m[4] and m[6] are the same. If m[4](or m[6]) is mismatched, m[4].str()(or m[6].str() respectively) returns an empty string which can also be compared with the other delimiter. 
+
+## Exercise 17.20
+
+> Write your own version of the program to validate phone numbers.
+
+[Implement](ex17.19.20/main.cpp)
+
+## Exercise 17.21
+
+> Rewrite your phone number program from 8.3.2 (p. 323) to use the valid function defined in this section.
+
+[Implement](ex17.21/main.cpp)
+
+## Exercise 17.22
+
+> Rewrite your phone program so that it allows any number of whitespace characters to separate the three parts of a phone number.
+
+[Implement](ex17.22/ex17.22/main.cpp)
+
+## Exercise 17.23
+
+> Write a regular expression to find zip codes. A zip code can have five or nine digits. The first five digits can be separated from the remaining four by a dash.
+
+"(\\d{5})(-\\d{4})?"
+
+## Exercise 17.24
+
+> Write your own version of the program to reformat phone numbers.
+
+[reformat phone numbers](ex17_24.cpp)
+
+## Exercise 17.25
+
+> Rewrite your phone program so that it writes only the first phone number for each person.
+
+[first phone number](ex17_25.cpp)
+
+## Exercise 17.26
+
+> Rewrite your phone program so that it writes only the second and subsequent phone numbers for people with more than one phone
+number.
+
+[subsequent phone numbers](ex17_26.cpp)
+
+
+## Exercise 17.27
+
+> Write a program that reformats a nine-digit zip code as ddddd-dddd.
+
+[reformat a nine-digit zip code](ex17_27.cpp)
