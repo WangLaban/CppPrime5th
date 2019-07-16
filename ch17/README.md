@@ -109,3 +109,15 @@ Because `std::accumulate`'s third parameter is the initial value of the sum. It'
 > What would happen if your regex object in the previous program were initialized with "[^c]ei"? Test your program using that pattern to see whether your expectations were correct.
 
 `[^c]ei` says we want any such letter that is followed by the letters 'ei', This pattern describes strings containing exactly **three** characters. The test words in [ex17_15](ex17_15.cpp) will all fail.
+
+## Exercise 17.17
+
+> Update your program so that it finds all the words in an input sequence that violiate the "ei" grammar rule.
+
+[Implement](ex17.17.18/main.cpp)
+
+## Exercise 17.18
+
+> Revise your program to ignore words that contain "ei" but are not  misspellings, such as "albeit" and "neighbor."
+
+[ignore_not_misspellings.cpp](ex17_18_ignore_not_misspellings.cpp)
