@@ -22,15 +22,15 @@ int main()
         string text;
         while(iss >> text)
         {
-        	++i;
-        	if(i != 2)
-        	{
-        		cout<<text<<" ";
-			}
-		}
-		if(i == 2)
-		    cout<<text;
-		cout<<endl;
+	    ++i;
+            if(i != 2)
+            {
+                cout<<text<<" ";
+	    }
+	}
+	if(i == 2)
+	    cout<<text;
+	cout<<endl;
     }
 
     return 0;
