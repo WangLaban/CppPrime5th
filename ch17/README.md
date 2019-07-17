@@ -238,3 +238,15 @@ randomly selects which transformation to apply.
 > Modify the program from the previous exercise to print the various floating-point values so that they line up in a column.
 
 [Implement](ex17.34.35.36/main.cpp)
+
+## Exercise 17.37
+
+> Use the unformatted version of getline to read a file a line at a time. Test your program by giving it a file that contains empty lines as well as lines that are longer than the character array that you pass to getline.
+
+[Implement](ex17.37.38/main.cpp)
+
+## Exercise 17.38
+
+> Extend your program from the previous exercise to print each word you read onto its own line.
+
+[Implement](ex17.37.38/main.cpp)
