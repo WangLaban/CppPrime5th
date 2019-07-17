@@ -177,3 +177,43 @@ number.
 > Write a program that reformats a nine-digit zip code as ddddd-dddd.
 
 [reformat a nine-digit zip code](ex17_27.cpp)
+
+## Exercise 17.28
+
+> Write a function that generates and returns a uniformly distributed random unsigned int each time it is called.
+
+[uniformly distributed random](ex17.28.29.30/main.cpp)
+
+## Exercise 17.29
+
+> Allow the user to supply a seed as an optional argument to the function you wrote in the previous exercise.
+
+[reformat a nine-digit zip code](ex17.28.29.30/main.cpp)
+
+## Exercise 17.30
+
+> Revise your function again this time to take a minimum and maximum value for the numbers that the function should return.
+
+[reformat a nine-digit zip code](ex17.28.29.30/main.cpp)
+
+## Exercise 17.31
+
+> What would happen if we defined b and e inside the do loop of the game-playing program from this section?
+
+Every Time the result is the same.
+Because engines return the same sequence of numbers, it is essential that we declare engines outside of loops. Otherwise, we’d create
+a new engine on each iteration and generate the same values on each iteration. Similarly, distributions may retain state and should also be defined outside loops.
+
+## Exercise 17.32
+
+> What would happen if we defined resp inside the loop?
+
+}while(cin >> resp && resp[0] == 'y');
+              ~~~~[Error] 'resp' was not declared in this scope
+
+## Exercise 17.33
+
+> Write a version of the word transformation program from §11.3.6 (p. 440) that allows multiple transformations for a given word and
+randomly selects which transformation to apply.
+
+[word transformation](ex_33.cpp)
