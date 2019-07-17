@@ -208,8 +208,10 @@ a new engine on each iteration and generate the same values on each iteration. S
 
 > What would happen if we defined resp inside the loop?
 
-}while(cin >> resp && resp[0] == 'y');
-              ~~~~[Error] 'resp' was not declared in this scope
+} while (cin >> resp && resp[0] == 'y');
+```sh
+[Error] 'resp' was not declared in this scope
+```
 
 ## Exercise 17.33
 
@@ -217,3 +219,21 @@ a new engine on each iteration and generate the same values on each iteration. S
 randomly selects which transformation to apply.
 
 [word transformation](ex_33.cpp)
+
+## Exercise 17.34
+
+> Write a program that illustrates the use of each manipulator in Tables 17.17 (p. 757) and 17.18.
+
+[Implement](ex17.34.35.36/main.cpp)
+
+## Exercise 17.35
+
+> Write a version of the program from page 758, that printed the square root of 2 but this time print hexadecimal digits in uppercase.
+
+[Implement](ex17.34.35.36/main.cpp)
+
+## Exercise 17.36
+
+> Modify the program from the previous exercise to print the various floating-point values so that they line up in a column.
+
+[Implement](ex17.34.35.36/main.cpp)
