@@ -250,3 +250,15 @@ randomly selects which transformation to apply.
 > Extend your program from the previous exercise to print each word you read onto its own line.
 
 [Implement](ex17.37.38/main.cpp)
+
+## Exercise 17.38
+
+> Extend your program from the previous exercise to print each word you read onto its own line.
+
+[Implement](ex17.37.38/main.cpp)
+
+## Exercise 17.39
+
+> Write your own version of the seek program presented in this section.
+
+[seek and tell](ex17.39/main.cpp)
