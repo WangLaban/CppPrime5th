@@ -210,7 +210,8 @@ a new engine on each iteration and generate the same values on each iteration. S
 
 ```sh
 } while (cin >> resp && resp[0] == 'y');
-[Error] 'resp' was not declared in this scope
+                ~~~~
+                [Error] 'resp' was not declared in this scope
 ```
 
 ## Exercise 17.33
