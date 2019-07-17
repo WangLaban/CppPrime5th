@@ -261,4 +261,4 @@ randomly selects which transformation to apply.
 
 > Write your own version of the seek program presented in this section.
 
-[seek and tell](ex17.39/main.cpp)
+[seek and tell](ex17_39/main.cpp)
