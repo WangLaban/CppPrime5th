@@ -208,8 +208,8 @@ a new engine on each iteration and generate the same values on each iteration. S
 
 > What would happen if we defined resp inside the loop?
 
-} while (cin >> resp && resp[0] == 'y');
 ```sh
+} while (cin >> resp && resp[0] == 'y');
 [Error] 'resp' was not declared in this scope
 ```
 
