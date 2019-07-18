@@ -86,3 +86,18 @@ by each catch clause:
 > Define your Blob and BlobPtr classes from Chapter 16 to use function try blocks for their constructors.
 
 [Header](ex18_7_blob.h) | [Test](ex18_7_blob_test.cpp)
+
+## Exercise 18.8
+> Review the classes you’ve written and add appropriate exception specifications to their constructors and destructors. If you think one of your destructors might throw, change the code so that it cannot throw.
+
+...
+
+## Exercise 18.9
+> Define the bookstore exception classes described in this section and rewrite your Sales_data compound assigment operator to throw an exception.
+
+[Exception class](ex18.9.10/exception_class.h) | [Sales_data class](ex18.9.10/Sales_data.h) | [Test](ex18.9.10/main.cpp)
+
+## Exercise 18.10
+> Write a program that uses the Sales_data addition operator on objects that have differing ISBNs. Write two versions of the program: one that handles the exception and one that does not. Compare the behavior of the programs so that you become familiar with what happens when an uncaught exception occurs.
+
+[Exception class](ex18.9.10/exception_class.h) | [Sales_data class](ex18.9.10/Sales_data.h) | [Test](ex18.9.10/main.cpp)
