@@ -101,3 +101,38 @@ by each catch clause:
 > Write a program that uses the Sales_data addition operator on objects that have differing ISBNs. Write two versions of the program: one that handles the exception and one that does not. Compare the behavior of the programs so that you become familiar with what happens when an uncaught exception occurs.
 
 [Exception class](ex18.9.10/exception_class.h) | [Sales_data class](ex18.9.10/Sales_data.h) | [Test](ex18.9.10/main.cpp)
+
+If an uncaught exception occurs, the program calls the library terminate function to stop execution of the program.
+
+## Exercise 18.11
+> Why is it important that the what function doesn’t throw?
+
+std::exception::what() is noexcept. Consequently, if it throws, std::terminate is called. Yes, this is important.
+
+## Exercise 18.12
+> Organize the programs you have written to answer the questions in each chapter into their own namespaces. That is, namespace
+chapter15 would contain code for the Query programs and chapter10 would contain the TextQuery code. Using this structure, compile the Query code examples.
+
+[Implement](ex18.12.13.14.cpp)
+
+## Exercise 18.13
+> When might you use an unnamed namespace?
+
+refer1(http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
+refer2(http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c)
+
+## Exercise 18.14
+> Suppose we have the following declaration of the operator* that is a member of the nested namespace mathLib::MatrixLib:
+```cpp
+namespace mathLib {
+    namespace MatrixLib {
+        class matrix { /* ... */ };
+        matrix operator*
+            (const matrix &, const matrix &);
+        // ...
+    }
+}
+```
+How would you declare this operator in global scope?
+
+mathLib::MatrixLib::matrix mathLib::MatrixLib::operator* (const matrix&, const matrix&);
