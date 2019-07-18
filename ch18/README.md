@@ -64,3 +64,25 @@ int main() {
 The handlers should print the error message associated with the exception before calling abort (defined in the header cstdlib) to terminate main.
 
 [catch exception](ex18_5.cpp)
+
+## Exercise 18.6
+> Given the following exception types and catch clauses, write a throw expression that creates an exception object that can be caught
+by each catch clause:
+```cpp
+(a) class exceptionType { };
+    catch(exceptionType *pet) { }
+(b) catch(...) { }
+(c) typedef int EXCPTYPE;
+    catch(EXCPTYPE) { }
+```
+
+```cpp
+(a) throw& exceptionType();
+(b) any type of exception is ok
+(c) throw int();
+```
+
+## Exercise 18.7
+> Define your Blob and BlobPtr classes from Chapter 16 to use function try blocks for their constructors.
+
+[Header](ex18_7_blob.h) | [Test](ex18_7_blob_test.cpp)
