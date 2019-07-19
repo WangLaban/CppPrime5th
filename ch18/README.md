@@ -111,8 +111,7 @@ chapter15 would contain code for the Query programs and chapter10 would contain 
 ## Exercise 18.13
 > When might you use an unnamed namespace?
 
-- refer to: http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions
-- and: http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c
+[refer to](http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)[and](http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c)
 
 ## Exercise 18.14
 > Suppose we have the following declaration of the operator* that is a member of the nested namespace mathLib::MatrixLib:
@@ -347,16 +346,16 @@ class D2 : public Base2 { /* ... */ };
 class MI : public D1, public D2 { /* ... */ };
 ```
 > Using the following pointers, determine which function is used in each call:
-> Base1 *pb1 = new MI;
-> Base2 *pb2 = new MI;
-> D1 *pd1 = new MI;
-> D2 *pd2 = new MI;
-> (a) pb1->print();
-> (b) pd1->print();
-> (c) pd2->print();
-> (d) delete pb2;
-> (e) delete pd1;
-> (f) delete pd2;
+> - Base1 *pb1 = new MI;\n
+> - Base2 *pb2 = new MI;\n
+> - D1 *pd1 = new MI;
+> - D2 *pd2 = new MI;
+> - (a) pb1->print();
+> - (b) pd1->print();
+> - (c) pd2->print();
+> - (d) delete pb2;
+> - (e) delete pd1;
+> - (f) delete pd2;
 
 >**Answer**:
 - (a)MI
@@ -366,7 +365,8 @@ class MI : public D1, public D2 { /* ... */ };
 - (e)MI, D2, Base2, D1, Base1
 - (f)MI, D2, Base2, D1, Base1
 - (d), (e), (f) will call all the destructor, for "Destructors are always invoked in the reverse order from which the constructors are run."
-- [cpp](ex18_25.cpp)
+-----
+[cpp](ex18_25.cpp)
 
 ## Exercises Section 18.3.3
 ```cpp
