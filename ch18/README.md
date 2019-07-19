@@ -242,6 +242,7 @@ int main()
 ## Exercise 18.21
 
 > Explain the following declarations. Identify any that are in error and explain why they are incorrect:
+
 >**(a)**
 ```cpp
 class CAD{};
@@ -365,7 +366,7 @@ class MI : public D1, public D2 { /* ... */ };
 - (e)MI, D2, Base2, D1, Base1
 - (f)MI, D2, Base2, D1, Base1
 - (d), (e), (f) will call all the destructor, for "Destructors are always invoked in the reverse order from which the constructors are run."
-[cpp](ex18_25.cpp)
+- [cpp](ex18_25.cpp)
 
 ## Exercises Section 18.3.3
 ```cpp
@@ -465,9 +466,13 @@ void MI::foo(double cval)
 }
 ```
 > (a) List all the names visible from within MI::foo.
+>
 > (b) Are any names visible from more than one base class?
+>
 > (c) Assign to the local instance of dval the sum of the dval member of Base1 and the dval member of Derived.
+>
 > (d) Assign the value of the last element in MI::dvec to Base2::fval.
+>
 > (e) Assign cval from Base1 to the first character in sval from Derived.
 ```cpp
 #include <iostream>
