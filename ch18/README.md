@@ -208,10 +208,16 @@ What would happen if the using declaration were located in main before the call 
 -  void compute(char*, char* = 0) works
 - b:
 -  The compiler will match to void compute( const void *) in the primerLib namespace. void compute() will still not work because of too many arguments.
+- c:
+-  void compute(int) first, no type conversion
+-  void compute() doesn't work. 'compute' was not declared in this scope
+-  void compute(const void *) doesn't works. 'compute' was not declared in this scope
+-  void compute(double, double = 3.4) works converted to double
+-  void compute(char*, char* = 0) works
 ```cpp
 namespace primerLib {
     void compute();  //Error, does not work. Too many argument in the call to match.
-	void compute(const void *) { std::cout << "compupte(const void *)" << std::endl; } //Works! Converts argument to a constant void pointer.
+    void compute(const void *) { std::cout << "compupte(const void *)" << std::endl; } //Works! Converts argument to a constant void pointer.
 }
 
 void compute(int) { std::cout << "compute(int)" << std::endl; }  //Works! Most closely matches the argument parameters so it is selected first.
@@ -220,13 +226,14 @@ void compute(char* x, char* =0) { std::cout << "compute(char* x, char* =0)" << s
 
 void f()
 {
-	using primerLib::compute;
+    //using primerLib::compute;  // b
     compute(0);
 }
 
 int main()
 {
-	f();
+    using primerLib::compute;  // c
+    f();
     return 0;
 }
 ```
