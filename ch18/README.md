@@ -18,7 +18,6 @@ If the "throw" in (b) were written as "throw p", there will be a runtime error.
 ## Exercise 18.2
 
 > Explain what happens if an exception occurs at the indicated point:
-
 ```cpp
 void exercise(int *b, int *e)
 {
@@ -28,7 +27,6 @@ void exercise(int *b, int *e)
     // exception occurs here
 }
 ```
-
 The space "p" points will not be free. There will be a memory leak.
 
 ## Exercise 18.3
@@ -40,7 +38,6 @@ The space "p" points will not be free. There will be a memory leak.
 ## Exercise 18.4
 
 > Looking ahead to the inheritance hierarchy in Figure 18.1 (p.783), explain what’s wrong with the following try block. Correct it.
-
 ```cpp
 try {
 // use of the C++ standard library
@@ -50,7 +47,6 @@ try {
 // ...
 } catch(overflow_error eobj) { /* ... */ }
 ```
-
 The first catch parameter is the base class, then all derived classes can match, because it's not a reference or pointer, then the exception object will be sliced down.
 The second catch parameter is the base class of overflow_error, and also is's a reference, so always use runtime_error when an runtime_error or overflow_error exception occurs.
 
@@ -117,8 +113,8 @@ chapter15 would contain code for the Query programs and chapter10 would contain 
 ## Exercise 18.13
 > When might you use an unnamed namespace?
 
-- (refer1 to: http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
-- (refer2 to: http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c)
+- refer to: http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions
+- and: http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c
 
 ## Exercise 18.14
 > Suppose we have the following declaration of the operator* that is a member of the nested namespace mathLib::MatrixLib:
@@ -166,3 +162,24 @@ void manip() {
 > Write code to test your answers to the previous question.
 
 [Implement](ex18.15.16.17/main.cpp)
+
+## Exercise 18.18
+> Given the following typical definition of swap § 13.3 (p.517), determine which version of swap is used if mem1 is a string. What if
+mem1 is an int? Explain how name lookup works in both cases.
+```cpp
+void swap(T v1, T v2)
+{
+    using std::swap;
+    swap(v1.mem1, v2.mem1);
+    // swap remaining members of type T
+}
+```
+Swap is a template function defined by the standard library. By stating we are using std::swap all the following uses of swap in the scope of the function will look for the matching template for its argument types in the standard library.
+- If mem1 is a string the program will use the standard library function that has string arguments.
+- If mem1 is int, it will use the standard library template version with int arguments.
+
+
+## Exercise 18.19
+> What if the call to swap was std::swap(v1.mem1, v2.mem1)?
+
+The function would use the matching std version of swap for that specific call.
