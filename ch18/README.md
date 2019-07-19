@@ -111,7 +111,7 @@ chapter15 would contain code for the Query programs and chapter10 would contain 
 ## Exercise 18.13
 > When might you use an unnamed namespace?
 
-[refer to](http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)[and](http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c)
+[refer to](http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions) and [refer to](http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c)
 
 ## Exercise 18.14
 > Suppose we have the following declaration of the operator* that is a member of the nested namespace mathLib::MatrixLib:
@@ -368,6 +368,7 @@ class MI : public D1, public D2 { /* ... */ };
 -----
 [cpp](ex18_25.cpp)
 
+-----
 ## Exercises Section 18.3.3
 ```cpp
 struct Base1 {
@@ -399,6 +400,8 @@ protected:
     std::vector<double> dvec;
 };
 ```
+-----
+
 ## Exercise 18.26
 
 > Given the hierarchy in the box on page 810, why is the following call to print an error? Revise MI to allow this call to print to compile and execute correctly.
