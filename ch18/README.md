@@ -71,11 +71,9 @@ by each catch clause:
 (c) typedef int EXCPTYPE;
     catch(EXCPTYPE) { }
 ```
-```cpp
-(a) throw& exceptionType();
-(b) any type of exception is ok
-(c) throw int();
-```
+- (a) throw& exceptionType();
+- (b) any type of exception is ok
+- (c) throw int();
 
 ## Exercise 18.7
 > Define your Blob and BlobPtr classes from Chapter 16 to use function try blocks for their constructors.
@@ -183,3 +181,53 @@ Swap is a template function defined by the standard library. By stating we are u
 > What if the call to swap was std::swap(v1.mem1, v2.mem1)?
 
 The function would use the matching std version of swap for that specific call.
+
+## Exercise 18.20
+> In the following code, determine which function, if any, matches the call to compute. List the candidate and viable functions. What
+type conversions, if any, are applied to the argument to match the parameter in each viable function?
+```cpp
+namespace primerLib {
+    void compute();
+    void compute(const void *);
+}
+using primerLib::compute;
+void compute(int);
+void compute(double, double = 3.4);
+void compute(char*, char* = 0);
+void f()
+{
+    compute(0);
+}
+```
+What would happen if the using declaration were located in main before the call to compute? Answer the same questions as before.
+- a:
+-  void compute(int) first, no type conversion
+-  void compute() doesn't work
+-  void compute(const void *) works
+-  void compute(double, double = 3.4) works converted to double
+-  void compute(char*, char* = 0) works
+- b:
+-  The compiler will match to void compute( const void *) in the primerLib namespace. void compute() will still not work because of too many arguments.
+```cpp
+namespace primerLib {
+    void compute();  //Error, does not work. Too many argument in the call to match.
+	void compute(const void *) { std::cout << "compupte(const void *)" << std::endl; } //Works! Converts argument to a constant void pointer.
+}
+
+void compute(int) { std::cout << "compute(int)" << std::endl; }  //Works! Most closely matches the argument parameters so it is selected first.
+void compute(double, double =3.4);  //Works! Converts argument to double.
+void compute(char* x, char* =0) { std::cout << "compute(char* x, char* =0)" << std::endl; }  //Works! converts to a character pointer.
+
+void f()
+{
+	using primerLib::compute;
+    compute(0);
+}
+
+int main()
+{
+	f();
+    return 0;
+}
+```
+
