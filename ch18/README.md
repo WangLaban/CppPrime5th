@@ -126,7 +126,7 @@ namespace mathLib {
     }
 }
 ```
-How would you declare this operator in global scope?
+> How would you declare this operator in global scope?
 
 mathLib::MatrixLib::matrix mathLib::MatrixLib::operator* (const matrix&, const matrix&);
 
@@ -199,7 +199,7 @@ void f()
     compute(0);
 }
 ```
-What would happen if the using declaration were located in main before the call to compute? Answer the same questions as before.
+> What would happen if the using declaration were located in main before the call to compute? Answer the same questions as before.
 >**(a)**
 -  void compute(int) first, no type conversion
 -  void compute() doesn't work
@@ -240,51 +240,46 @@ int main()
 
 ## Exercise 18.21
 
->Explain the following declarations. Identify any that are in error and explain why they are incorrect:
-
+> Explain the following declarations. Identify any that are in error and explain why they are incorrect:
 >**(a)**
 ```cpp
 class CAD{};
 class Vehicle{};
 class CADVehicle : public CAD, Vehicle{};
 ```
-
-
-CAD Vehicle publicly inherits from CAD and privaetely inherits from Vehicle.  CADVehicle gets
-all the  public and private methods that Vehicle has but cant be cast to a Vehicle argument.
-It is an "inaccessible" base.
-for example
-
+CADVehicle publicly inherits from CAD and privately inherits from Vehicle.  CADVehicle gets all the  public and private methods that Vehicle has but cant be cast to a Vehicle argument. It is an "inaccessible" base.
+for example:
 ```cpp
-CadVehicle example;
+CADVehicle example;
 
-void foo(Vehicle){/*do something*/};
+void foo(Vehicle){ /*do something*/ };
 
-foo(CADVehicle);//will not work, will work if Vehicle were public
+foo(CADVehicle);  //will not work, will work if Vehicle were public
 ```
-
 >**(b)**
 ```cpp
 class DBList: public List,public List {/*do something*/};
 ```
-
-Error because you are trying to derive from the same base class twice.  If two different 
-libraries or header files define the same named class,you need to specify with
-a scope resolution operator, i.e. headerfile_name::List.
-
+Error because you are trying to derive from the same base class twice. If two different libraries or header files define the same named class, you need to specify with a scope resolution operator, i.e. headerfile_name::List.
 >**(c)**
 ```cpp
-class iostream : public istream, public ostream{/*do something*/};
+class iostream : public istream, public ostream{ /*do something*/ };
 ```
-
-
 Ok. 
-
 
 ## Exercise 18.22
 
->Given the following class hierarchy, in which each class defines a default constructor.
->What is the order of constructor execution for the following definition.
+> Given the following class hierarchy, in which each class defines a default constructor:
+```cpp
+class A { ... };
+class B : public A { ... };
+class C : public B { ... };
+class X { ... };
+class Y { ... };
+class Z : public X, public Y { ... };
+class MI : public C, public Z { ... };
+```
+> What is the order of constructor execution for the following definition.
 
 ```cpp
 #include <iostream>
@@ -312,51 +307,99 @@ C *pc = pd;
 return 0;
 }
 ```
-
-
-The order in which base classes are constructed depends on the order in which they appear in the class derivation list.
-construction order is as follows: A, B, C, X, Y, Z, MI.  
+The order in which base classes are constructed depends on the order in which they appear in the class derivation list. construction order is as follows: A, B, C, X, Y, Z, MI.  
 
 ## Exercise 18.23
 
->Using the hierarchy in exercise 18.22 along with class D defined below, and assuming each class defines a default constructor, which,if any,
-of the following conversion are not permitted?
-
+> Using the hierarchy in exercise 18.22 along with class D defined below, and assuming each class defines a default constructor, which, if any, of the following conversion are not permitted?
 ```cpp
-class D : public c{ ... };
+class D : public X, public C { ... };
 D *pd = new D;
-
 ```
+> (a) X *px = pd;
+> (b) A *pa = pd;
+> (c) B *pb = pd;
+> (d) C *pc = pd;
+
 All of the conversions are permitted.
 
 
 ## Exercise 18.24
 
->On page 807 we presented a series of calls made through a Bear pointer that pointed to a Panda object.
->Explain each call assuming we used a ZooAnimal pointer pointing to a Panda Object instead.
-
+> On page 807 we presented a series of calls made through a Bear pointer that pointed to a Panda object. Explain each call assuming we used a ZooAnimal pointer pointing to a Panda Object instead.
 ```cpp
 ZooAnimal *pb = new Panda ("ying_yang");
 
-pb->print();//Ok, part of ZooAnimal interface
-pb->cuddle();//Error, not part of interface
-pb->highlight();//Error, not part of interface
-delete pb;//Ok, part of interface
+pb->print();  // Ok, ZooAnimal::print()
+pb->cuddle();  // Error, not part of the ZooAnimal interface
+pb->highlight();  // Error, not part of the ZooAnimal interface
+delete pb;  // Ok, ZooAnimal::~ZooAnimal()
 ```
 
 ## Exercise 18.25
 
->Assume we have two base classes, Base1 and Base 2, each of which
->define a virtual member named print and a virtual destructor.  From these base
->classes we derive the following classes, each of which redefines the print function.
+> Assume we have two base classes, Base1 and Base 2, each of which define a virtual member named print and a virtual destructor.  From these base classes we derive the following classes, each of which redefines the print function:
+```cpp
+class D1 : public Base1 { /* ... */ };
+class D2 : public Base2 { /* ... */ };
+class MI : public D1, public D2 { /* ... */ };
+```
+> Using the following pointers, determine which function is used in each call:
+> Base1 *pb1 = new MI;
+> Base2 *pb2 = new MI;
+> D1 *pd1 = new MI;
+> D2 *pd2 = new MI;
+> (a) pb1->print();
+> (b) pd1->print();
+> (c) pd2->print();
+> (d) delete pb2;
+> (e) delete pd1;
+> (f) delete pd2;
 
-[cpp](./ex18.25.cpp "Exercise 18.25")
+>**Answer**:
+- (a)MI
+- (b)MI
+- (c)MI
+- (d)MI, D2, Base2, D1, Base1
+- (e)MI, D2, Base2, D1, Base1
+- (f)MI, D2, Base2, D1, Base1
+- (d), (e), (f) will call all the destructor, for "Destructors are always invoked in the reverse order from which the constructors are run."
+[cpp](ex18_25.cpp)
 
+## Exercises Section 18.3.3
+```cpp
+struct Base1 {
+    void print(int) const; // public by default
+protected:
+    int ival;
+    double dval;
+    char cval;
+private:
+    int *id;
+};
+struct Base2 {
+    void print(double) const; // public by default
+protected:
+    double fval;
+    private:
+    double dval;
+};
+struct Derived : public Base1 {
+    void print(std::string) const; // public by default
+protected:
+    std::string sval;
+    double dval;
+};
+struct MI : public Derived, public Base2 {
+    void print(std::vector<double>); // public by default
+protected:
+    int *ival;
+    std::vector<double> dvec;
+};
+```
 ## Exercise 18.26
 
->Given the hierarchy in the box on page 810, why is the following call to print an error?
->Revise MI to allow this call to print to compile and execute correctly.
-
+> Given the hierarchy in the box on page 810, why is the following call to print an error? Revise MI to allow this call to print to compile and execute correctly.
 ```cpp
 #include <iostream>
 #include <vector>
@@ -389,7 +432,7 @@ protected:
 struct MI : public Derived, public Base2{
 
 void print(std::vector<double>){};
-void print(int x){
+void print(int x) const{
     Base1::print(x);
 }
 protected:
@@ -406,15 +449,25 @@ int main()
     return 0;
 }
 ```
-
-There is no matching version of print in MI that matches an integer argument.  If we just remove the print function in MI there is an ambiguity between the Derived and Base2 versions
-of print; therefore, we should overload the MI version of print() to take an int argument.
+There is no matching version of print in MI that matches an integer argument.  If we just remove the print function in MI there is an ambiguity between the Derived and Base2 versions of print; therefore, we should overload the MI version of print() to take an int argument.
 
 ## Exercise 18.27
 
->Given the hierarchy in the box on page 810, why is the following call to print an error?
->Revise MI to allow this call to print to compile and execute correctly.
-
+> Given the class hierarchy in the box on page 810 and assuming we add a function named foo to MI as follows:
+```cpp
+int ival;
+double dval;
+void MI::foo(double cval)
+{
+    int dval;
+    // exercise questions occur here
+}
+```
+> (a) List all the names visible from within MI::foo.
+> (b) Are any names visible from more than one base class?
+> (c) Assign to the local instance of dval the sum of the dval member of Base1 and the dval member of Derived.
+> (d) Assign the value of the last element in MI::dvec to Base2::fval.
+> (e) Assign cval from Base1 to the first character in sval from Derived.
 ```cpp
 #include <iostream>
 #include <vector>
@@ -441,14 +494,14 @@ private:
 struct Derived : public Base1 {
     void print(std::string) const;
 protected:
-    std::string sval=std::string(1,Base1::cval);//(e)
+    std::string sval = std::string(1, Base1::cval);  //(e)
     double dval;
 };
 
 struct MI : public Derived, public Base2{
 
 void print(std::vector<double>){};
-void print(int x){
+void print(int x) const{
     Base1::print(x);
 }
 
@@ -458,13 +511,13 @@ double dval;
 void foo(double cval)
     {
         int dval;
-        dval = Base1::dval+Derived::dval;//(c)
-        Base2::fval=dvec.back()-1;//(d)
-        Derived::sval[0]= Base1::cval;//(e)
+        dval = Base1::dval+Derived::dval;  //(c)
+        Base2::fval = dvec.back() - 1;  //(d)
+        Derived::sval[0] = Base1::cval;  //(e)
         std::cout<<dval;
     }
 protected:
-    std::vector<double> dvec={9,8,7};
+    std::vector<double> dvec = {9,8,7};
 };
 
 int main()
@@ -473,37 +526,70 @@ int main()
     return 0;
 }
 ```
-
-(a) Everything that is a property of the classes that MI derives from is visible except those that are private.
-(b) Yes any names in the base classes that repeat and are not private can be accessed in foo by adding a scope operator.
-(c) see above
-(d) see above
-(e) see above
+- (a) Everything that is a property of the classes that MI derives from is visible except those that are private.
+- (b) Yes any names in the base classes that repeat and are not private can be accessed in foo by adding a scope operator.
+- (c) see above
+- (d) see above
+- (e) see above
 
 ## Exercise 18.28
 
->Given the following class hierarchy, which inherited members can be accessed without qualification, from within the vmi class?
->which require qualification? Explain your reasoning.
+> Given the following class hierarchy, which inherited members can be accessed without qualification, from within the vmi class? which require qualification? Explain your reasoning.
 
 ```cpp
-struct Base{
-    void bar(int); //Accessed without qualification, not defined with int arg anywhere
+struct Base {
+    void bar(int); // public by default
 protected:
-    int ival;//Need qualification, VMI will use Derived2::ival by default
+    int ival;
+};
+struct Derived1 : virtual public Base {
+    void bar(char); // public by default
+    void foo(char);
+protected:
+    char cval;
+};
+struct Derived2 : virtual public Base {
+    void foo(int); // public by default
+protected:
+    int ival;
+    char cval;
+};
+class VMI : public Derived1, public Derived2 { };
+```
+```cpp
+struct Base{
+    void bar(int){ std::cout<<"B::bar(int)"<<std::endl; }  // Accessed without qualification, not defined with int arg anywhere
+protected:
+    int ival = 1;  // Need qualification, VMI will use Derived2::ival by default
 };
 
 struct Derived1 : virtual public Base{
-    void bar(char);//Accessed with no qualification, VMI derives from Derived1 which derives from Base.
-    void foo(char);//Need qualification, can convert arg between two foos.
+    void bar(char){ std::cout<<"D1::bar(char)"<<std::endl; }  // Accessed with no qualification, VMI derives from Derived1 which derives from Base.
+    void foo(char){ std::cout<<"D1::foo(char)"<<std::endl; }  // Need qualification, can convert arg between two foos.
 protected:
-    char cval;//need to qualify ambiguous with other cval.
+    char cval = 'a';  // need to qualify ambiguous with other cval.
 };
 
 struct Derived2 : virtual public Base{
-void foo(int);//Need qualification, can convert arg between two foos.
+void foo(int){ std::cout<<"D2::foo(int)"<<std::endl; };  // Need qualification, can convert arg between two foos.
 protected:
-    int ival;//Accessed with no qualification.
-    char cval;//need to qualify ambiguous with other cval.
+    int ival = 2;  // Accessed with no qualification.
+    char cval = 'b';  // need to qualify ambiguous with other cval.
 };
 class VMI : public Derived1, public Derived2 { };
+
+int main()
+{
+	D d;
+	d.bar(42);  // D1::bar(char)
+	d.B::bar(42);  // B::bar(int)
+	std::cout<<d.ival<<std::endl;  // 2
+	std::cout<<d.B::ival<<std::endl;  // 1
+	//d.foo(42);  // [Error] request for member 'foo' is ambiguous
+	d.D1::foo(42);  // D1::foo(char)
+	d.D2::foo(42);   // D2::foo(int)
+	//std::cout<<d.cval<<std::endl;  // [Error] request for member 'cval' is ambiguous
+	std::cout<<d.D1::cval<<std::endl;  // a
+	std::cout<<d.D2::cval<<std::endl;  // b
+}
 ```
