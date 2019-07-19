@@ -200,6 +200,7 @@ void f()
 }
 ```
 > What would happen if the using declaration were located in main before the call to compute? Answer the same questions as before.
+
 >**(a)**
 -  void compute(int) first, no type conversion
 -  void compute() doesn't work
