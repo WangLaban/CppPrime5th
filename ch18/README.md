@@ -71,9 +71,9 @@ by each catch clause:
 (c) typedef int EXCPTYPE;
     catch(EXCPTYPE) { }
 ```
-- (a) throw& exceptionType();
-- (b) any type of exception is ok
-- (c) throw int();
+(a) throw& exceptionType();
+(b) any type of exception is ok
+(c) throw int();
 
 ## Exercise 18.7
 > Define your Blob and BlobPtr classes from Chapter 16 to use function try blocks for their constructors.
@@ -200,15 +200,15 @@ void f()
 }
 ```
 What would happen if the using declaration were located in main before the call to compute? Answer the same questions as before.
-a:
+**(a)**
 -  void compute(int) first, no type conversion
 -  void compute() doesn't work
 -  void compute(const void *) works
 -  void compute(double, double = 3.4) works converted to double
 -  void compute(char*, char* = 0) works
-b:
+**(b)**
 -  The compiler will match to void compute( const void *) in the primerLib namespace. void compute() will still not work because of too many arguments.
-c:
+**(c)**
 -  void compute(int) first, no type conversion
 -  void compute() doesn't work. 'compute' was not declared in this scope
 -  void compute(const void *) doesn't works. 'compute' was not declared in this scope
