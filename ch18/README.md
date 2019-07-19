@@ -113,13 +113,13 @@ std::exception::what() is noexcept. Consequently, if it throws, std::terminate i
 > Organize the programs you have written to answer the questions in each chapter into their own namespaces. That is, namespace
 chapter15 would contain code for the Query programs and chapter10 would contain the TextQuery code. Using this structure, compile the Query code examples.
 
-[Implement](ex18.12.13.14.cpp)
+[Implement](ex18.12.13.14/main.cpp)
 
 ## Exercise 18.13
 > When might you use an unnamed namespace?
 
-refer1(http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
-refer2(http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c)
+(refer1 to: http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
+(refer2 to: http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c)
 
 ## Exercise 18.14
 > Suppose we have the following declaration of the operator* that is a member of the nested namespace mathLib::MatrixLib:
@@ -136,3 +136,34 @@ namespace mathLib {
 How would you declare this operator in global scope?
 
 mathLib::MatrixLib::matrix mathLib::MatrixLib::operator* (const matrix&, const matrix&);
+
+
+## Exercise 18.15
+> Explain the differences between using declarations and directives.
+
+This difference in scope between a using declaration and a using directive stems directly from how these two facilities work. In the case of a using declaration, we are simply making name directly accessible in the local scope. In contrast, a using directive makes the entire contents of a namespace available In general, a namespace might include definitions that cannot appear in a local scope. As a consequence, a using directive is treated as if it appeared in the nearest enclosing namespace scope.
+
+## Exercise 18.16
+> Explain the following code assuming using declarations for all the members of namespace Exercise are located at the location labeled position 1. What if they appear at position 2 instead? Now answer the same question but replace the using declarations with a using directive for namespace Exercise.
+```cpp
+namespace Exercise {
+    int ivar = 0;
+    double dvar = 0;
+    const int limit = 1000;
+}
+int ivar = 0;
+// position 1
+void manip() {
+    // position 2
+    double dvar = 3.1416;
+    int iobj = limit + 1;
+    ++ivar;
+    ++::ivar;
+}
+```
+[Implement](ex18.15.16.17/main.cpp)
+
+## Exercise 18.17
+> Write code to test your answers to the previous question.
+
+[Implement](ex18.15.16.17/main.cpp)
