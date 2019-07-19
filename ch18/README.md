@@ -75,7 +75,6 @@ by each catch clause:
 (c) typedef int EXCPTYPE;
     catch(EXCPTYPE) { }
 ```
-
 ```cpp
 (a) throw& exceptionType();
 (b) any type of exception is ok
@@ -118,8 +117,8 @@ chapter15 would contain code for the Query programs and chapter10 would contain 
 ## Exercise 18.13
 > When might you use an unnamed namespace?
 
-(refer1 to: http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
-(refer2 to: http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c)
+- (refer1 to: http://stackoverflow.com/questions/154469/unnamed-anonymous-namespaces-vs-static-functions)
+- (refer2 to: http://stackoverflow.com/questions/5312213/uses-of-unnamed-namespace-in-c)
 
 ## Exercise 18.14
 > Suppose we have the following declaration of the operator* that is a member of the nested namespace mathLib::MatrixLib:
