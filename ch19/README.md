@@ -13,7 +13,6 @@ StrVec programs (§ 13.5, p. 526) using your versions of the functions from the 
 
 [Header](ex19.2/ex19_2_StrVec.h) | [Implement](ex19.2/ex19_2_StrVec.cpp) | [Test](ex19.2/ex19_2_test.cpp)
 
-
 ## Exercise 19.3
 
 > Given the following class hierarchy in which each class defines a public default constructor and virtual destructor:
@@ -27,15 +26,15 @@ class D : public B, public A { /* . . . */ };
 
 > (a) A *pa = new C;
 
-> B *pb = dynamic_cast< B* >(pa);
+>     B *pb = dynamic_cast< B* >(pa);
 
 > (b) B *pb = new B;
 
-> C *pc = dynamic_cast< C* >(pb);
+>     C *pc = dynamic_cast< C* >(pb);
 
 > (c) A *pa = new D;
 
-> B *pb = dynamic_cast< B* >(pa);
+>     B *pb = dynamic_cast< B* >(pa);
 
 (b) cast fail.
 
@@ -63,15 +62,54 @@ make that operation a virtual function.
 > Write an expression to dynamically cast a pointer to a Query_base to a pointer to an AndQuery (§ 15.9.1, p. 636). Test the cast
 by using objects of AndQuery and of another query type. Print a statement indicating whether the cast works and be sure that the output matches yourexpectations.
 
-[Header](ex19.6.7.8/ex19_6.7.8_TextQuery.h) | [Implement](ex19.6.7.8/ex19_6.7.8_Query.h) | [Test](ex19.6.7.8/ex19_6.7.8_Test.cpp)
+[TextQuery](ex19.6.7.8/ex19_6.7.8_TextQuery.h) | [Query](ex19.6.7.8/ex19_6.7.8_Query.h) | [Test](ex19.6.7.8/ex19_6.7.8_Test.cpp)
 
 ## Exercise 19.7
 
 > Write the same cast, but cast a Query_base object to a reference to AndQuery. Repeat the test to ensure that your cast works correctly.
 
-[Header](ex19.6.7.8/ex19_6.7.8_TextQuery.h) | [Implement](ex19.6.7.8/ex19_6.7.8_Query.h) | [Test](ex19.6.7.8/ex19_6.7.8_Test.cpp)
+[TextQuery](ex19.6.7.8/ex19_6.7.8_TextQuery.h) | [Query](ex19.6.7.8/ex19_6.7.8_Query.h) | [Test](ex19.6.7.8/ex19_6.7.8_Test.cpp)
 
 ## Exercise 19.8
+
 > Write a typeid expression to see whether two Query_base pointers point to the same type. Now check whether that type is an AndQuery.
 
-[Header](ex19.6.7.8/ex19_6.7.8_TextQuery.h) | [Implement](ex19.6.7.8/ex19_6.7.8_Query.h) | [Test](ex19.6.7.8/ex19_6.7.8_Test.cpp)
+[TextQuery](ex19.6.7.8/ex19_6.7.8_TextQuery.h) | [Query](ex19.6.7.8/ex19_6.7.8_Query.h) | [Test](ex19.6.7.8/ex19_6.7.8_Test.cpp)
+
+## Exercise 19.9
+
+> Write a program similar to the last one in this section to print the names your compiler uses for common type names. If your compiler
+gives output similar to ours, write a function that will translate those strings to more human-friendly form.
+
+[type_info](ex19_9_TypeName.h)
+
+## Exercise 19.10
+
+> Given the following class hierarchy in which each class defines a public default constructor and virtual destructor, which type name
+do the following statements print?
+```cpp
+class A { /* . . . */ };
+class B : public A { /* . . . */ };
+class C : public B { /* . . . */ };
+```
+> (a) A *pa = new C;
+
+>     cout << typeid(pa).name() << endl;  // P1A
+
+A's pointer.
+
+> (b) C cobj;
+
+>     A& ra = cobj;
+
+>     cout << typeid(&ra).name() << endl;  // P1A
+
+A's pointer.
+
+> (c) B *px = new B;
+
+>    A& ra = *px;
+
+>    cout << typeid(ra).name() << endl;  // 1B
+
+B's reference. If all classes didn't define the virtual destructor, It will output A's reference.
