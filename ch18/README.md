@@ -346,8 +346,8 @@ class D2 : public Base2 { /* ... */ };
 class MI : public D1, public D2 { /* ... */ };
 ```
 > Using the following pointers, determine which function is used in each call:
-> - Base1 *pb1 = new MI;\n
-> - Base2 *pb2 = new MI;\n
+> - Base1 *pb1 = new MI;
+> - Base2 *pb2 = new MI;
 > - D1 *pd1 = new MI;
 > - D2 *pd2 = new MI;
 > - (a) pb1->print();
