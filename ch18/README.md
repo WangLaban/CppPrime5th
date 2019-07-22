@@ -615,14 +615,17 @@ class MI : public D1, public D2 { ... };
 class Final : public MI, public Class { ... };
 ```
 > (a) In what order are constructors and destructors run on a Final object?
+
 To create a Final, the constructors are invoked in in the order: Class -> Base -> D1 -> D2 -> MI -> Class. The object is destroyed in reverse order from which it was constructed, so the destructors are invoked in the order: Class -> MI -> D2 -> D1 -> Base -> Class.
 
 > (b) A Final object has how many Base parts? How many Class parts?
+
 One Base part and Two Class parts.
 
 > (c) Which of the following assignments is a compile-time error?
 
 > Base *pb; Class *pc; MI *pmi; D2 *pd2;
+
 > (a) pb = new Class;
 > (b) pc = new Final;
 > (c) pmi = pb;
@@ -631,3 +634,50 @@ One Base part and Two Class parts.
 - (b) [Error] 'Class' is an ambiguous base of 'Final'
 - (c) [Error] cannot convert from pointer to base class 'Base' to pointer to derived class 'MI' because the base is virtual
 - (d) OK
+
+## Exercise 18.30
+
+> Define a default constructor, a copy constructor, and a constructor that has an int parameter in Base. Define the same three
+constructors in each derived class. Each constructor should use its argument to initialize its Base part.
+```cpp
+#include <iostream>
+
+class Class {};
+class Base : public Class {
+protected:
+	int ival;
+public:
+	Base() : ival(0), Class() {};
+	Base(const Base &b) = default;
+	Base(int a) : ival(a), Class() { std::cout << "Base, argument: " << a << std::endl; }
+};
+class D1 : public virtual Base {
+public:
+	D1() : Base() {}
+	D1(const D1 &b) = default;
+	D1(int a) : Base(a) { std::cout << "D1, argument: " << a << std::endl; }
+};
+class D2 : public virtual Base {
+public:
+	D2() : Base() {}
+	D2(const D2 &b) = default;
+	D2(int a) : Base(a) { std::cout << "D2, argument: " << a << std::endl; }
+};
+class MI : public D1, public D2 {
+public:
+	MI() {}
+	MI(const MI &m) : Base(m), D1(m), D2(m) {}
+	MI(int i) : Base(i), D1(i), D2(i) { std::cout << "MI, argument: " << i << std::endl; }
+};
+class Final : public MI, public Class {
+public:
+	Final() {}
+	Final(const Final &f) : Base(f), MI(f), Class() {}
+	Final(int i) : Base(i), MI(i), Class() {}
+};
+
+int main()
+{
+	Final fl(42);
+}
+```
