@@ -602,3 +602,32 @@ int main()
 	std::cout<<d.D2::cval<<std::endl;  // b
 }
 ```
+
+## Exercise 18.29
+
+> Given the following class hierarchy:
+```cpp
+class Class { ... };
+class Base : public Class { ... };
+class D1 : virtual public Base { ... };
+class D2 : virtual public Base { ... };
+class MI : public D1, public D2 { ... };
+class Final : public MI, public Class { ... };
+```
+> (a) In what order are constructors and destructors run on a Final object?
+To create a Final, the constructors are invoked in in the order: Class -> Base -> D1 -> D2 -> MI -> Class. The object is destroyed in reverse order from which it was constructed, so the destructors are invoked in the order: Class -> MI -> D2 -> D1 -> Base -> Class.
+
+> (b) A Final object has how many Base parts? How many Class parts?
+One Base part and Two Class parts.
+
+> (c) Which of the following assignments is a compile-time error?
+
+> Base *pb; Class *pc; MI *pmi; D2 *pd2;
+> (a) pb = new Class;
+> (b) pc = new Final;
+> (c) pmi = pb;
+> (d) pd2 = pmi;
+- (a) [Error] invalid conversion from 'Class*' to 'Base*' [-fpermissive]
+- (b) [Error] 'Class' is an ambiguous base of 'Final'
+- (c) [Error] cannot convert from pointer to base class 'Base' to pointer to derived class 'MI' because the base is virtual
+- (d) OK
