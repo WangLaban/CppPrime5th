@@ -81,7 +81,7 @@ by using objects of AndQuery and of another query type. Print a statement indica
 > Write a program similar to the last one in this section to print the names your compiler uses for common type names. If your compiler
 gives output similar to ours, write a function that will translate those strings to more human-friendly form.
 
-[type_info](ex19_9_TypeName.h)
+[type_info](ex19_9_TypeName.cpp)
 
 ## Exercise 19.10
 
@@ -108,8 +108,8 @@ A's pointer.
 
 > (c) B *px = new B;
 
->    A& ra = *px;
+>     A& ra = *px;
 
->    cout << typeid(ra).name() << endl;  // 1B
+>     cout << typeid(ra).name() << endl;  // 1B
 
 B's reference. If all classes didn't define the virtual destructor, It will output A's reference.
