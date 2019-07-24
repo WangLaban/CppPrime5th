@@ -131,4 +131,13 @@ When we initialize or assign a pointer to member, that pointer does not yet poin
 ## Exercise 19.13
 
 >  Define the type that can represent a pointer to the bookNo member of the Sales_data class.
-
+```cpp
+  - member:
+	static const std::string Sales_data::* data()
+	{
+		return &Sales_data::bookNo;
+	}
+  - call:
+  const string Sales_data::*pb=Sales_data::data();
+```
+Check code [here](ex19_13.cpp)
