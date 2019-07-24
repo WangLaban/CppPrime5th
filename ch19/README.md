@@ -194,3 +194,32 @@ Check code [here](ex19_19.cpp)
 
 Check code [here](ex19_20.cpp)
 
+## Exercise 19.21
+
+> Write your own version of the Token class.
+
+[Sales_data.h](19_21.22.23.25/Sales_data.h) | [Token.h](19_21.22.23.25/Token.h) | [Test](19_21.22.23.25/Test.cpp)
+
+## Exercise 19.22
+
+> Add a member of type Sales_data to your Token class.
+
+[Sales_data.h](19_21.22.23.25/Sales_data.h) | [Token.h](19_21.22.23.25/Token.h) | [Test](19_21.22.23.25/Test.cpp)
+
+## Exercise 19.23
+
+> Add a move constructor and move assignment to Token.
+
+[Sales_data.h](19_21.22.23.25/Sales_data.h) | [Token.h](19_21.22.23.25/Token.h) | [Test](19_21.22.23.25/Test.cpp)
+
+## Exercise 19.24
+
+> Explain what happens if we assign a Token object to itself.
+
+Check code [here](ex19_21.cpp)
+
+## Exercise 19.25
+
+> Write assignment operators that take values of each type in the union.
+
+[Sales_data.h](19_21.22.23.25/Sales_data.h) | [Token.h](19_21.22.23.25/Token.h) | [Test](19_21.22.23.25/Test.cpp)
