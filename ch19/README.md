@@ -138,6 +138,40 @@ When we initialize or assign a pointer to member, that pointer does not yet poin
 		return &Sales_data::bookNo;
 	}
   - call:
-  const string Sales_data::*pb=Sales_data::data();
+	const string Sales_data::*pb=Sales_data::data();
 ```
 Check code [here](ex19_13.cpp)
+
+## Exercise 19.14
+
+>  Is the following code legal? If so, what does it do? If not, why?
+```cpp
+auto pmf = &Screen::get_cursor;
+pmf = &Screen::get;
+```
+legal. pmf is a pointer to a member function: char (Screen::*)() const, it point to a Screen member function that is const that returns a char and takes no arguments.
+
+## Exercise 19.15
+
+>  What is the difference between an ordinary function pointer and a pointer to a member function?
+
+- a pointer to a function member is declared usingclassname::*. Like any other function pointer, a pointer to member function specifies the return type and parameter list of the type of function to which this pointer can point. If the member function is a const member or a reference member, we must include the const or reference qualifier as well.
+- As with normal function pointers, if the member is overloaded, we must distinguish which function we want by declaring the type explicitly.
+- As when we use a pointer to a data member, we use the .* or ->* operators to call a member function through a pointer to member.
+- When we initialize (or assign to) a pointer to member, we say to which member it points. We apply the address-of operator not to an object in memory but to a member of the class.
+
+## Exercise 19.16
+
+> Write a type alias that is a synonym for a pointer that can point to the avg_price member of Sales_data.
+
+[using Avg = double (Sales_data::*)() const;](ex19_16.cpp)
+
+## Exercise 19.17
+
+> Define a type alias for each distinct Screen member function type.
+```cpp
+    char get() const { return contents[cursor]; }  // using Action_c_v = char (Screen::*)()const;
+    char get_cursor() const { return contents[cursor]; }  // the same as above
+    inline char get(pos ht, pos wd) const;  //  using Action_c_uu = char (Screen::*)(pos,pos)const;
+    Screen &move(pos r, pos c);  //  using Action_Screen_uu = Screen &(Screen::*)(pos,pos);
+```
