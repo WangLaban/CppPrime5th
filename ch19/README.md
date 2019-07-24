@@ -179,9 +179,18 @@ legal. pmf is a pointer to a member function: char (Screen::*)() const, it point
 ## Exercise 19.18
 
 > Write a function that uses count_if to count how many empty strings there are in a given vector.
+
 [int cnt = count_if(svec.begin(), svec.end(), mem_fn(&string::empty));](ex19_18.cpp)
 
 ## Exercise 19.19
 
 > Write a function that takes a vector<Sales_data> and finds the first element whose average price is greater than some given amount.
+
+Check code [here](ex19_19.cpp)
+
+## Exercise 19.20
+
+> Nest your QueryResult class inside TextQuery and rerun the programs you wrote to use TextQuery in § 12.3.2 (p. 490).
+
+Check code [here](ex19_20.cpp)
 
