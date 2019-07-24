@@ -113,3 +113,22 @@ A's pointer.
 >     cout << typeid(ra).name() << endl;  // 1B
 
 B's reference. If all classes didn't define the virtual destructor, It will output A's reference.
+
+## Exercise 19.11
+
+> What is the difference between an ordinary data pointer and a pointer to a data member?
+
+As with any pointer, we declare a pointer to member using a * to indicate that the name we’re declaring is a pointer. Unlike ordinary pointers, a pointer to member also incorporates the class that contains the member. Hence, we must precede the * with classname:: to indicate that the pointer we are defining can point to a member of classname.
+
+When we initialize or assign a pointer to member, that pointer does not yet point to any data. It identifies a specific member but not the object that contains that member. We supply the object when we dereference the pointer to member.
+
+## Exercise 19.12
+
+> Define a pointer to member that can point to the cursor member of class Screen. Fetch the value of Screen::cursor through that pointer.
+
+[const Screen::pos Screen::*pc = &Screen::cursor;](ex19_12.cpp)
+
+## Exercise 19.13
+
+>  Define the type that can represent a pointer to the bookNo member of the Sales_data class.
+
