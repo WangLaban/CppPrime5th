@@ -157,7 +157,7 @@ legal. pmf is a pointer to a member function: char (Screen::*)() const, it point
 
 - a pointer to a function member is declared usingclassname::*. Like any other function pointer, a pointer to member function specifies the return type and parameter list of the type of function to which this pointer can point. If the member function is a const member or a reference member, we must include the const or reference qualifier as well.
 - As with normal function pointers, if the member is overloaded, we must distinguish which function we want by declaring the type explicitly.
-- As when we use a pointer to a data member, we use the .* or ->* operators to call a member function through a pointer to member.
+- To make a call through a pointer to member function, we must use the .* or ->* operators to bind the pointer to a specific object. As a result, unlike ordinary function pointers, a pointer to member is not a callable object; these pointers do not support the function-call operator.
 - When we initialize (or assign to) a pointer to member, we say to which member it points. We apply the address-of operator not to an object in memory but to a member of the class.
 
 ## Exercise 19.16
@@ -175,3 +175,13 @@ legal. pmf is a pointer to a member function: char (Screen::*)() const, it point
     inline char get(pos ht, pos wd) const;  //  using Action_c_uu = char (Screen::*)(pos,pos)const;
     Screen &move(pos r, pos c);  //  using Action_Screen_uu = Screen &(Screen::*)(pos,pos);
 ```
+
+## Exercise 19.18
+
+> Write a function that uses count_if to count how many empty strings there are in a given vector.
+[int cnt = count_if(svec.begin(), svec.end(), mem_fn(&string::empty));](ex19_18.cpp)
+
+## Exercise 19.19
+
+> Write a function that takes a vector<Sales_data> and finds the first element whose average price is greater than some given amount.
+
